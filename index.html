@@ -29,7 +29,7 @@
             <div class="prev" @click="prevImage()"></div>
 
             <!-- con v-for stamperò elementi CICLANDO PER "ogni elemento ('elm') in array ('images') -->
-            <div class="thumb active" v-for="elm in images">
+            <div class="thumb active" v-for="elm in images" @click="clickImage()">
 
                 <!-- con v-bind (:) all'attributo 'src' richiamo il VALORE di 'elemento.CHIAVE-->
                 <img :src="elm.src" alt="">
