@@ -8,25 +8,35 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-   <div class="container">
+    <!-- do un id all'ELelemnto su cui andrà a girare il mio programma per richiamarlo come VALORE della CHIAVE 'el' -->
+   <div id="root" class="container">
         <div class="items">
             
             <div class="item active">
-                <img src="./img/01.jpg" alt="">
+                <!-- con v-bind (:) all'attributo 'src' richiamo il VALORE di 'di-images[n°elemento].CHIAVE' -->
+                <img :src="images[index].src" :alt="images[index].title">
                 <div class="text">
-                    <h3>Lorem</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum corporis.</p>
+                    <!-- trattandosi di innerHTML, attraverso il doppio baffo richiamo il VALORE di 'di-images[n°elemento].CHIAVE' -->
+                    <h3>{{images[index].title}}</h3>
+                    <p>{{images[index].text}}</p>
                 </div>
             </div> 
            
         </div>
         <div class="thumbs">
-            <div class="prev"></div>
 
-            <div class="thumb active">
-                <img src="./img/01.jpg" alt="">
+            <!-- con v-on (@evento) aggiungo un evento click a questo elemento e inietto la mia funzione salvata in 'methods'. Ad ogni click si attiverà la funzione 'prevImage'(ovvero:"al click decrementa l'indice, se arriva a 0 riportalo al massimo")  -->
+            <div class="prev" @click="prevImage()"></div>
+
+            <!-- con v-for stamperò elementi CICLANDO PER "ogni elemento ('elm') in array ('images') -->
+            <div class="thumb active" v-for="elm in images">
+
+                <!-- con v-bind (:) all'attributo 'src' richiamo il VALORE di 'elemento.CHIAVE-->
+                <img :src="elm.src" alt="">
             </div> 
-            <div class="thumb">
+
+            <!-- commento i div che non mi servono più -->
+            <!-- <div class="thumb">
                 <img src="./img/02.jpg" alt="">
             </div> 
             <div class="thumb">
@@ -37,12 +47,16 @@
             </div> 
             <div class="thumb">
                 <img src="./img/05.jpg" alt="">
-            </div> 
+            </div>  -->
             
-            <div class="next"></div>
+            <!-- con v-on (@evento) aggiungo un evento click a questo elemento e inietto la mia funzione salvata in 'methods'. Ad ogni click si attiverà la funzione 'nextImage'(ovvero:"al click incrementa l'indice, se supera il numero di elementi riportalo a zero")  -->
+            <div class="next" @click="nextImage()"></div>
+
         </div>
    </div>
 
+   <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
    <script src="js/main.js"></script>
 </body>
 </html>
