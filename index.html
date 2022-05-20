@@ -28,11 +28,12 @@
             <!-- con v-on (@evento) aggiungo un evento click a questo elemento e inietto la mia funzione salvata in 'methods'. Ad ogni click si attiverà la funzione 'prevImage'(ovvero:"al click decrementa l'indice, se arriva a 0 riportalo al massimo")  -->
             <div class="prev" @click="prevImage()"></div>
 
-            <!-- con v-for stamperò elementi CICLANDO PER "ogni elemento ('elm') in array ('images') -->
-            <div class="thumb active" v-for="elm in images" @click="clickImage()">
+            <!-- 1 - con v-for stamperò elementi CICLANDO PER "ogni elemento ('elm') in array ('images') e mi faccio ritornare l'indice ('elmIndex')-->
+            <!-- 2 - imposto l'indice ('elmImage') come argomento della funzione 'clickImage'-->
+            <div class="thumb active" v-for="(elm, elmIndex) in images" @click="clickImage(elmIndex)">
 
                 <!-- con v-bind (:) all'attributo 'src' richiamo il VALORE di 'elemento.CHIAVE-->
-                <img :src="elm.src" alt="">
+                <img :src="elm.src" :alt="elm.title">
             </div> 
 
             <!-- commento i div che non mi servono più -->
